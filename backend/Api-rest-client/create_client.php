@@ -1,16 +1,13 @@
 <?php
 require_once('../includes/client.class.php');
+require_once('../includes/config/respuestas.php'); // Incluir las respuestas
+
+$respuestas = new respuestas();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Mostrar los datos recibidos para depuración
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
-
     if (isset($_POST['email']) && isset($_POST['name']) && isset($_POST['number_id']) &&
         isset($_POST['telephone']) && isset($_POST['type_identification'])) {
 
-        // Llamar al método para crear un cliente
         $result = Client::crear_client(
             $_POST['type_identification'],
             $_POST['number_id'],
@@ -19,16 +16,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['email']
         );
 
-        // Verificar resultado y enviar respuesta
         if ($result) {
-            echo "El cliente ha sido creado exitosamente.";
+            header('Content-Type: application/json');
+            echo json_encode(array("status" => "ok", "message" => "El cliente ha sido creado exitosamente."));
         } else {
-            echo "Error al crear el cliente.";
+            header('Content-Type: application/json');
+            echo json_encode($respuestas->error_500("Error al crear el cliente."));
         }
     } else {
-        echo "Datos incompletos.";
+        header('Content-Type: application/json');
+        echo json_encode($respuestas->error_400());
     }
 } else {
-    echo "Método de solicitud no permitido.";
+    header('Content-Type: application/json');
+    header('HTTP/1.1 405 Method Not Allowed');
+    echo json_encode($respuestas->error_405());
 }
+
 
