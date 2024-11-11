@@ -14,9 +14,9 @@
                     <i class="fa-solid fa-bars"></i>
                     <ul class="menu">
                         <li class="item"><a href="#" class="text">Servicios</a></li>
-                        <li class="item"><a href="#" class="text">Habitaciones</a></li>
-                        <li class="item"><a href="#" class="text">Quienes somos</a></li>
-                        <li class="item"><a href="nosotros" class="text">Contactanos</a></li>
+                        <li class="item"><a href="#habitaciones" class="text">Habitaciones</a></li>
+                        <li class="item"><a href="#nosotros" class="text">Quienes somos</a></li>
+                        <li class="item"><a href="#" class="text">Contactanos</a></li>
                     </ul>
                     <div class="container-logo">
                         <i class="fa-solid fa-star-and-crescent"></i>
@@ -78,7 +78,7 @@
                         detalle ha sido cuidadosamente diseñado para ofrecerle una experiencia inolvidable. Desde la elegancia de nuestras
                         habitaciones hasta el servicio impecable de nuestro personal, todo está orientado a superar sus expectativas.
                         </p>
-                        <div class="container-options">
+                        <div class="container-options" id="contact-nosotros">
                             <span class="contact" href="#">Contactar</span>
                         </div>
                 
@@ -129,148 +129,160 @@
                     </div>
                 </div>
             </section>
-            <section class="container top-products">
-                <h1 class="heading-1">Mejores Productos</h1>
 
+            <section id="habitaciones" class="container-specials">
+                <h1 class="heading-1">Habitaciones</h1>
                 <div class="container-options">
-                    <span class="active">Destacados</span>
-                    <span>Más recientes</span>
-                    <span>Mejores Vendidos</span>
+                    <span class="active">Todos</span>
+                    <span>Menor valor</span>
+                    <span>Mayor valor</span>
                 </div>
-
-                <div class="container-products">
-                    <!-- Producto 1 -->
+                <div class="container-products habitaciones">
                     <div class="card-product">
-                        <div class="container-img">
-                            <img src="img/cafe-irish.jpg" alt="Cafe Irish" />
-                            <span class="discount">-13%</span>
-                            <div class="button-group">
-                                <span>
-                                    <i class="fa-regular fa-eye"></i>
-                                </span>
-                                <span>
-                                    <i class="fa-regular fa-heart"></i>
-                                </span>
-                                <span>
-                                    <i class="fa-solid fa-code-compare"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="content-card-product">
-                            <div class="stars">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                            <h3>Cafe Irish</h3>
-                            <span class="add-cart">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </span>
-                            <p class="price">$4.60 <span>$5.30</span></p>
-                        </div>
-                    </div>
-                    <!-- Producto 2 -->
-                    <div class="card-product">
-                        <div class="container-img">
-                            <img src="img/cafe-ingles.jpg" alt="Cafe incafe-ingles.jpg" />
-                            <span class="discount">-22%</span>
-                            <div class="button-group">
-                                <span>
-                                    <i class="fa-regular fa-eye"></i>
-                                </span>
-                                <span>
-                                    <i class="fa-regular fa-heart"></i>
-                                </span>
-                                <span>
-                                    <i class="fa-solid fa-code-compare"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="content-card-product">
-                            <div class="stars">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                            <h3>Cafe Inglés</h3>
-                            <span class="add-cart">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </span>
-                            <p class="price">$5.70 <span>$7.30</span></p>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <div class="card-product">
-                        <div class="container-img">
-                            <img src="img/cafe-australiano.jpg" alt="Cafe Australiano" />
-                            <div class="button-group">
-                                <span>
-                                    <i class="fa-regular fa-eye"></i>
-                                </span>
-                                <span>
-                                    <i class="fa-regular fa-heart"></i>
-                                </span>
-                                <span>
-                                    <i class="fa-solid fa-code-compare"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="content-card-product">
-                            <div class="stars">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <h3>Cafe Australiano</h3>
-                            <span class="add-cart">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </span>
-                            <p class="price">$3.20</p>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <div class="card-product">
-                        <div class="container-img">
-                            <img src="img/cafe-helado.jpg" alt="Cafe Helado" />
-                            <div class="button-group">
-                                <span>
-                                    <i class="fa-regular fa-eye"></i>
-                                </span>
-                                <span>
-                                    <i class="fa-regular fa-heart"></i>
-                                </span>
-                                <span>
-                                    <i class="fa-solid fa-code-compare"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="content-card-product">
-                            <div class="stars">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                            <h3>Cafe Helado</h3>
-                            <span class="add-cart">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </span>
-                            <p class="price">$5.60</p>
+                        <div class="habitacion">
+                            <img src="" alt="">
+                            <p>{{descripcion}}</p>
                         </div>
                     </div>
                 </div>
             </section>
-
-
+            <section id="Servicios" class="container-specials">
+                <h1 class="heading-1">Servicios</h1>
+                <div class="container-options">
+                    <span class="active">Todos</span>
+                    <span>Menor valor</span>
+                    <span>Mayor valor</span>
+                </div>
+                <div class="container-products Servicios">
+                    <div class="card-product">
+                        <div class="habitacion">
+                            <img src="" alt="">
+                            <p>{{descripcion}}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="formulario-contacto contenedor">
+            
+                <div class="informacion-contacto">
+                    <h3>Contactanos</h3>
+                    <p><i class="fas fa-map-marker-alt"></i>23. Roma Italia 75012</p>
+                    <p><i class="fas fa-envelope"></i> luca@turilli.it</p>
+                    <p><i class="fas fa-phone-alt"></i>+31123410921</p>
+                    <div class="redes-sociales">
+                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-twitter-square"></i>
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+            
+                <form class="formulario">
+                    <div class="input-formulario">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" placeholder="Ingrese su nombre" id="nombre">
+                    </div>
+                    <div class="input-formulario">
+                        <label for="apellidos">Apellido</label>
+                        <input type="text" placeholder="Ingrese su apellido" id="apellidos">
+                    </div>
+                    <div class="input-formulario">
+                        <label for="correo">Correo</label>
+                        <input type="email" placeholder="ejemplo@ejemplo.com" id="correo">
+                    </div>
+                    <div class="input-formulario">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" placeholder="+90 543 779 9410" id="telefono">
+                    </div>
+                    <div class="input-formulario">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea placeholder="Deje sus comentarios " ></textarea>
+                    </div>
+                    <div class="content container-options">
+                        <button class="btn-formulario" type="submit">Enviar</button>
+                    </div>
+            
+                </form>
+            </section>
         </main>
+<footer class="footer">
+    <div class="container container-footer">
+        <div class="menu-footer">
+            <div class="contact-info">
+                <p class="title-footer">Información de Contacto</p>
+                <ul>
+                    <li>
+                        Dirección: 71 Pennington Lane Vernon Rockville, CT
+                        06066
+                    </li>
+                    <li>Teléfono: 123-456-7890</li>
+                    <li>Fax: 55555300</li>
+                    <li>EmaiL: baristas@support.com</li>
+                </ul>
+                <div class="social-icons">
+                    <span class="facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </span>
+                    <span class="twitter">
+                        <i class="fa-brands fa-twitter"></i>
+                    </span>
+                    <span class="youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </span>
+                    <span class="pinterest">
+                        <i class="fa-brands fa-pinterest-p"></i>
+                    </span>
+                    <span class="instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </span>
+                </div>
+            </div>
 
+            <div class="information">
+                <p class="title-footer">Información</p>
+                <ul>
+                    <li><a href="#">Acerca de Nosotros</a></li>
+                    <li><a href="#">Información Delivery</a></li>
+                    <li><a href="#">Politicas de Privacidad</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
+                    <li><a href="#">Contactános</a></li>
+                </ul>
+            </div>
+
+            <div class="my-account">
+                <p class="title-footer">Mi cuenta</p>
+
+                <ul>
+                    <li><a href="#">Mi cuenta</a></li>
+                    <li><a href="#">Historial de ordenes</a></li>
+                    <li><a href="#">Lista de deseos</a></li>
+                    <li><a href="#">Boletín</a></li>
+                    <li><a href="#">Reembolsos</a></li>
+                </ul>
+            </div>
+
+            <div class="newsletter">
+                <p class="title-footer">Boletín informativo</p>
+
+                <div class="content">
+                    <p>
+                        Suscríbete a nuestros boletines ahora y mantente al
+                        día con nuevas colecciones y ofertas exclusivas.
+                    </p>
+                    <input type="email" placeholder="Ingresa el correo aquí...">
+                    <button>Suscríbete</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>
+                Desarrollado por Programación para el mundo &copy; 2022
+            </p>
+
+            <img src="img/payment.png" alt="Pagos">
+        </div>
+    </div>
+</footer>
 
 
 
