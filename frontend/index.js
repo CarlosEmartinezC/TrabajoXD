@@ -2,6 +2,16 @@
 const urlHabitaciones = 'http://localhost/proyecto/TrabajoUniversidad/backend/Api-rest-services/infoHabitation.php'
 const urlServices = 'http://localhost/proyecto/TrabajoUniversidad/backend/Api-rest-services/serviceshotel.php'
 const urlcreateclient ='http://localhost/proyecto/TrabajoUniversidad/backend/Api-rest-client/create_client.php'
+const imagenes = document.querySelector('img');
+// Elementos del modal y botón de reserva
+const modal = document.getElementById('reservation-modal');
+const reserveBtn = document.getElementById('reserve-btn');
+const closeBtn = document.querySelector('.close-btn');
+
+// Elementos select en el formulario del modal
+const nombreServicioSelect = document.getElementById('nombre_servicio');
+const tipoHabitacionSelect = document.getElementById('tipo_habitacion');
+
 //obtener datos de Habitaciones
 // Función que obtiene los datos de las habitaciones
 async function obtenerDatosHabitaciones() {
@@ -9,8 +19,14 @@ async function obtenerDatosHabitaciones() {
         const response = await fetch(urlHabitaciones);
         if (response.ok) {
             const data = await response.json();  // Procesa la respuesta como JSON
-            mostrarHabitaciones(data);
-
+            console.log("Datos de habitaciones recibidos:", data);
+            llenarSelectHabitaciones(data)
+            mostrarHabitaciones(data)
+            if (Array.isArray(data) && data.length > 0) {
+                llenarSelectHabitaciones(data); // Llenar select de habitaciones
+            } else {
+                console.warn("Los datos de habitaciones no son válidos o están vacíos.");
+            }
         } else {
             throw new Error('Error en la respuesta del servidor');
         }
@@ -29,8 +45,8 @@ async function obtenerDatosServicios() {
         throw new Error('Error en la respuesta del servidor');
     })
     .then(res => {
+        llenarSelectServicios(res)
         mostrarServicios(res);
-        
         console.log(res);  // Aquí ves los datos correctamente procesados
     })
     .catch(error => {
@@ -38,8 +54,27 @@ async function obtenerDatosServicios() {
     });
 }
 
+//--------------Metodo Post ---------------------- //
+document.querySelector('form').addEventListener('submit', async function (e) {
+    e.preventDefault(); // Prevenir el envío del formulario
+    const formData = new FormData(this);
 
-const imagenes = document.querySelector('img');
+    try {
+        const response = await fetch( {
+            method: 'POST',
+            body: formData
+        });
+        if (response.ok) {
+            const result = await response.json();
+            alert("Reservación creada con éxito");
+            modal.style.display = 'none'; // Ocultar el modal después de crear la reservación
+        } else {
+            alert("Error al crear la reservación");
+        }
+    } catch (error) {
+        console.error('Hubo un problema con la solicitud de creación de cliente:', error);
+    }
+});
 
 
 //funcion carousel
@@ -71,12 +106,20 @@ function showSlides(n) {
     dots[slideIndex-1].className += " active";
 }
 
+//funcionalidad botones
+document.getElementById('contact-button').addEventListener('click', function() {
+    document.getElementById('contactanos').scrollIntoView({ behavior: 'smooth' });
+});
+
+
+
 //cargar habitaciones en con javascript
 function mostrarHabitaciones(data) {
     const container = document.querySelector('.habitaciones');  // Donde se mostrarán las tarjetas
     container.innerHTML = '';  // Limpiamos el contenedor antes de agregar los nuevos productos
 
     data.forEach(habitacion => {
+        if (habitacion.habitación_id === 0) return;
         const card = document.createElement('div');
         card.classList.add('card-product');
         // Convertir el tipo de habitación a minúsculas
@@ -102,7 +145,6 @@ const precioOriginalFormateado = parseFloat(precioOriginal).toLocaleString('es-C
                 <span class="discount">-${descuento}%</span>
                 <div class="button-group">
                     <span><i class="fa-regular fa-eye"></i></span>
-                    <span><i class="fa-regular fa-heart"></i></span>
                     <span><i class="fa-solid fa-code-compare"></i></span>
                 </div>
             </div>
@@ -132,6 +174,7 @@ function mostrarServicios(res) {
     container.innerHTML = '';  // Limpiamos el contenedor antes de agregar los nuevos productos
 
     res.forEach(servicio => {
+        if (servicio.servicio_id === 0) return;
         const card = document.createElement('div');
         card.classList.add('card-product');
         // Convertir el tipo de habitación a minúsculas
@@ -142,12 +185,12 @@ function mostrarServicios(res) {
         const precioConDescuentoser = parseFloat(servicio.precio);
 
         const descuento = 25;
-// Calculamos el precio original
-const precioOriginalser = (precioConDescuentoser / (1 - (descuento / 100))).toFixed(2);
+        // Calculamos el precio original
+        const precioOriginalser = (precioConDescuentoser / (1 - (descuento / 100))).toFixed(2);
 
-// Formateamos los precios para usar puntos como separadores de miles
-const precioFormateado = precioConDescuentoser.toLocaleString('es-CO').replace(/,/g, '.');
-const precioOriginalFormateado = parseFloat(precioOriginalser).toLocaleString('es-CO').replace(/,/g, '.');
+        // Formateamos los precios para usar puntos como separadores de miles
+        const precioFormateado = precioConDescuentoser.toLocaleString('es-CO').replace(/,/g, '.');
+        const precioOriginalFormateado = parseFloat(precioOriginalser).toLocaleString('es-CO').replace(/,/g, '.');
 
         
         // Creamos la estructura HTML de la tarjeta
@@ -157,11 +200,17 @@ const precioOriginalFormateado = parseFloat(precioOriginalser).toLocaleString('e
                 <span class="discount">-${descuento}%</span>
                 <div class="button-group">
                     <span><i class="fa-regular fa-eye"></i></span>
-                    <span><i class="fa-regular fa-heart"></i></span>
                     <span><i class="fa-solid fa-code-compare"></i></span>
                 </div>
             </div>
             <div class="content-card-product">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
                 <h3>${servicio.nombre_servicio}</h3>
                 <p class="description">
                     ${servicio.descripción.length > 40 ? servicio.descripción.substring(0, 30) + '...' : servicio.descripción}
@@ -176,14 +225,25 @@ const precioOriginalFormateado = parseFloat(precioOriginalser).toLocaleString('e
     });
 }
 
-// Elementos del modal y botón de reserva
-const modal = document.getElementById('reservation-modal');
-const reserveBtn = document.getElementById('reserve-btn');
-const closeBtn = document.querySelector('.close-btn');
+// Función para llenar el select de tipoHabitacion
+function llenarSelectHabitaciones(data) {
+    data.forEach(habitacion => {
+        const option = document.createElement('option');
+        option.value = habitacion.habitación_id
+        option.textContent = habitacion.tipo_habitación
+        tipoHabitacionSelect.appendChild(option);
+    });
+}
 
-// Elementos select en el formulario del modal
-const nombreServicioSelect = document.getElementById('nombre_servicio');
-const tipoHabitacionSelect = document.getElementById('tipo_habitacion');
+// Función para llenar el select de nombreServicio
+function llenarSelectServicios(res) {
+    res.forEach(servicio => {
+        const option = document.createElement('option')
+        option.value = servicio.servicio_id
+        option.textContent = servicio.nombre_servicio
+        nombreServicioSelect.appendChild(option)
+    });
+}
 
 // Abrir el modal al hacer clic en "Reserva Ahora"
 reserveBtn.addEventListener('click', function (e) {
@@ -201,25 +261,10 @@ window.addEventListener('click', function (event) {
     }
 });
 
-// Función para llenar el select de tipoHabitacion
-function llenarSelectHabitaciones(data) {
-    data.forEach(habitacion => {
-        const option = document.createElement('option');
-        option.value = habitacion.tipo_habitacion;
-        option.textContent = habitacion.tipo_habitacion; // Usar nombre visible
-        tipoHabitacionSelect.appendChild(option);
-    });
-}
 
-// Función para llenar el select de nombreServicio
-function llenarSelectServicios(data) {
-    data.forEach(servicio => {
-        const option = document.createElement('option');
-        option.value = servicio.servicio_id;
-        option.textContent = servicio.nombre_servicio; // Usar nombre visible
-        nombreServicioSelect.appendChild(option);
-    });
-}
+
+
+
 
 
 
