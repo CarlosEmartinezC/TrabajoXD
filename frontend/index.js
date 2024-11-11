@@ -9,7 +9,8 @@ async function obtenerDatosHabitaciones() {
         const response = await fetch(urlHabitaciones);
         if (response.ok) {
             const data = await response.json();  // Procesa la respuesta como JSON
-            mostrarHabitaciones(data);  // Llama a la función que maneja los datos cuando están listos
+            mostrarHabitaciones(data);
+
         } else {
             throw new Error('Error en la respuesta del servidor');
         }
@@ -29,6 +30,7 @@ async function obtenerDatosServicios() {
     })
     .then(res => {
         mostrarServicios(res);
+        
         console.log(res);  // Aquí ves los datos correctamente procesados
     })
     .catch(error => {
@@ -174,11 +176,55 @@ const precioOriginalFormateado = parseFloat(precioOriginalser).toLocaleString('e
     });
 }
 
+// Elementos del modal y botón de reserva
+const modal = document.getElementById('reservation-modal');
+const reserveBtn = document.getElementById('reserve-btn');
+const closeBtn = document.querySelector('.close-btn');
 
+// Elementos select en el formulario del modal
+const nombreServicioSelect = document.getElementById('nombre_servicio');
+const tipoHabitacionSelect = document.getElementById('tipo_habitacion');
+
+// Abrir el modal al hacer clic en "Reserva Ahora"
+reserveBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    modal.style.display = 'flex'; // Mostrar el modal
+});
+
+// Cerrar el modal al hacer clic en el botón de cerrar o fuera del modal
+closeBtn.addEventListener('click', function () {
+    modal.style.display = 'none'; // Ocultar el modal
+});
+window.addEventListener('click', function (event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Función para llenar el select de tipoHabitacion
+function llenarSelectHabitaciones(data) {
+    data.forEach(habitacion => {
+        const option = document.createElement('option');
+        option.value = habitacion.tipo_habitacion;
+        option.textContent = habitacion.tipo_habitacion; // Usar nombre visible
+        tipoHabitacionSelect.appendChild(option);
+    });
+}
+
+// Función para llenar el select de nombreServicio
+function llenarSelectServicios(data) {
+    data.forEach(servicio => {
+        const option = document.createElement('option');
+        option.value = servicio.servicio_id;
+        option.textContent = servicio.nombre_servicio; // Usar nombre visible
+        nombreServicioSelect.appendChild(option);
+    });
+}
 
 
 
 window.onload = function() {
     obtenerDatosServicios();
     obtenerDatosHabitaciones();
+    
 };
