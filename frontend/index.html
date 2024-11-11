@@ -37,7 +37,7 @@
         <div class="content-banner">
             <p>Hotel economico</p>
             <h2>Estrella Dorada</h2>
-            <a href="#" id="reserve-btn">Reserva Ahora</a>
+            <a id="reserve-btn">Reserva Ahora</a>
         </div>
     </section>
     <main class="main-content">
@@ -287,16 +287,26 @@
         </div>
     </footer>
 
+    <!-- Modal para mostrar la información detallada de la habitación -->
+    <div id="info-modal" class="infomodal">
+        <div class="info-content"> <span class="close-btn" id="close-info-modal">&times;</span>
+            <div id="modal-content-dynamic"> <!-- Contenido dinámico de la habitación se llenará aquí -->
+            </div>
+            <div class="container-options fromContact">
+                <button id="reserve-btn-modal">Crear Reservación</button>
+            </div>
+        </div>
+    </div>
     <!-- Modal del formulario -->
     <div id="reservation-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="closeModalBtn">&times;</span>
             <h1>Crear Reservación</h1>
-            <form class="formulario" action="FormReservation" method="POST">
+            <form class="formulario" action="#" id="reservationForm">
                 <div class="Reservation">
                     <div class="input-formulario">
                     <label class=".input-formulario label" for="type_identification">Tipo de Identificación:</label>
-                    <select name="type_identification">
+                    <select  name="type_identification" required>
                         <option value="Cédula de Ciudadanía">Cédula de Ciudadanía</option>
                         <option value="Certificados excepcionales y de nacionalidad">Certificados excepcionales y de
                             nacionalidad</option>
@@ -312,7 +322,8 @@
                     </div>
                     <div class="input-formulario" id="buttonReservation">
                         <label for="number_id">Número de Documento:</label>
-                        <input type="text" name="number_id" required>
+                        <input type="number" name="number_id" required>
+                        
                     </div>
                     <div class="input-formulario">
                     <label for="name">Nombre Completo:</label>
@@ -320,7 +331,7 @@
                     </div>
                     <div class="input-formulario">
                     <label for="telephone">Número de Celular:</label>
-                    <input type="text" name="telephone" required>
+                    <input type="number" name="telephone" required>
                     </div>
                     <div class="input-formulario">
                     <label for="email">Correo Electrónico:</label>
@@ -336,19 +347,19 @@
                     </div>
                     <div class="input-formulario">
                         <label for="nombre_servicio">Nombre del Servicio:</label>
-                        <select name="nombre_servicio" id="nombre_servicio">
+                        <select name="nombre_servicio" id="nombre_servicio" required>
                             <!-- Opciones se llenarán en JavaScript -->
                         </select>
                     </div>
                     <div class="input-formulario">
                         <label for="tipo_habitacion">Tipo de Habitación:</label>
-                        <select name="tipo_habitacion" id="tipo_habitacion">
+                        <select name="tipo_habitacion" id="tipo_habitacion" required>
                             <!-- Opciones se llenarán en JavaScript -->
                         </select>
                     </div>
                 </div>
                     <div class="container-options fromContact">
-                        <button id="btn-form-Reser" type="submit">Crear Reservación</button>
+                        <button id="btn-form-Reser" value="RegistrarReserva">Crear Reservación</button>
                     </div>
             </form>
         </div>
